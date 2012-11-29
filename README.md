@@ -32,6 +32,7 @@ Which will output the following:
 Example - Table without header row
 ----------------------------------
 If this is your data:
+
     $data = array(
       0 => array('col1 row1', 'col2 row1'),
       1 => array('col1 row2', 'col2 row2'),
