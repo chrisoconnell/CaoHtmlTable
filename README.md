@@ -9,8 +9,8 @@ The code will try to make to most of what its given.
 Example - Table with header row
 ----------------------------------
     $data = array(
-      0 => array('header col1' => 'col1 row1', 'header col2' => 'col2 row1'),
-      1 => array('header col1' => 'col1 row2', 'header col2' => 'col2 row2'),
+      array('header col1' => 'col1 row1', 'header col2' => 'col2 row1'),
+      array('header col1' => 'col1 row2', 'header col2' => 'col2 row2'),
     );
 
 If the above `$data` was set in your controller, then inside your view script (.phtml file) put:
@@ -39,8 +39,8 @@ Example - Table without header row
 If this is your data:
 
     $data = array(
-      0 => array('col1 row1', 'col2 row1'),
-      1 => array('col1 row2', 'col2 row2'),
+      array('col1 row1', 'col2 row1'),
+      array('col1 row2', 'col2 row2'),
     );
     
 Then the output of `echo $this->htmlTable($data);` will be:
