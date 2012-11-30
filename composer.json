@@ -1,0 +1,24 @@
+{
+    "name": "chrisoconnell/CaoHtmlTable",
+    "description": "A Zend Framework 2 view helper to render an HTML Table",
+    "license": "BSD-3-Clause",
+    "type": "library",
+    "keywords": ["zf2", "zendframework", "view helper", "table"],
+    "homepage": "https://github.com/chrisoconnell/CaoHtmlTable",
+    "authors": [
+        {
+            "name": "Chris O'Connell",
+            "email": "chris@chrisoconnell.info",
+            "homepage": "http://chrisoconnell.info"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": "2.*"
+    },
+    "autoload": {
+        "classmap": [
+            "./Module.php"
+        ]
+    }
+}
