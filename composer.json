@@ -1,5 +1,5 @@
 {
-    "name": "chrisoconnell/CaoHtmlTable",
+    "name": "chrisoconnell/cao-html-table",
     "description": "A Zend Framework 2 view helper to render an HTML Table",
     "license": "BSD-3-Clause",
     "type": "library",
