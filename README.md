@@ -59,7 +59,7 @@ Then the output of `echo $this->htmlTable($data);` will be:
 
 Example - Using instance of CaoHtmlTable\Model\Table
 ----------------------------------------------------
-When you need more flexibility for the table &mdash; ie set caption, css class &mdash; then you need to crete an instance of
+When you need more flexibility for the table &mdash; ie set caption, css class &mdash; then you need to create an instance of
 `CaoHtmlTable\Model\Table` to use as the data.
 
 If this is your data:
