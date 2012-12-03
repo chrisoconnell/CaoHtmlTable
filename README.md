@@ -56,3 +56,38 @@ Then the output of `echo $this->htmlTable($data);` will be:
       </tr>
      </tbody>
     </table>
+
+Example - Using instance of CaoHtmlTable\Model\Table
+----------------------------------------------------
+When you need more flexibility for the table &mdash; ie set caption, css class &mdash; then you need to crete an instance of
+`CaoHtmlTable\Model\Table` to use as the data.
+
+If this is your data:
+
+    $data = array(
+        array('col1 row1', 'col2 row1'),
+        array('col1 row2', 'col2 row2', 'col 3 row2'),
+    );
+    $table = new CaoHtmlTable\Model\Table($data);
+    $table->setAttributes(array('class' => 'table'))
+          ->setCaption('My Table Caption')
+          ->setHeaderRow(array('Header 1', 'Header 2', 'Header 3'));
+
+Then the output of `echo $this->htmlTable($table);` will be:
+
+    <table class="table">
+      <caption>My Table Caption</caption>
+      <thead>
+        <tr>
+          <th>Header 1</th><th>Header 2</th><th>Header 3</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>col1 row1</td><td>col2 row1</td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>col1 row2</td><td>col2 row2</td><td>col 3 row2</td>
+        </tr>
+      </tbody>
+    </table>

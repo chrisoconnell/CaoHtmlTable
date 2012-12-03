@@ -3,70 +3,58 @@
 namespace CaoHtmlTable\View\Helper;
 
 use CaoHtmlTable\Model\Table as HtmlTable;
-use Zend\View\Helper\AbstractHelper;
+use Zend\View\Helper\AbstractHtmlElement;
 use Zend\Stdlib\ArrayUtils;
 
-class CaoHtmlTable extends AbstractHelper
+class CaoHtmlTable extends AbstractHtmlElement
 {
     /**
-     * @var HtmlTable | array
+     * Generates a 'Table' element.
+     *
+     * @param array|CaoHtmlTable\Model\Table $data
+     * @return string The table HTML
+     * @throws \InvalidArgumentException if data is not an array or instance of CaoHtmlTable\Model\Table.
      */
-    protected $table;
-
     public function __invoke($data = array())
     {
         if (!is_array($data) && !($data instanceof HtmlTable)) {
             throw new \InvalidArgumentException('Must pass an array or instance of CaoHtmlTable\Model\Table.');
         }
 
-        $this->table = is_array($data) ? new HtmlTable($data) : $data;
+        $table = is_array($data) ? new HtmlTable($data) : $data;
 
-        return $this->render();
-    }
+        if ($table->hasAttributes()) {
+            $attribs = $this->htmlAttribs($table->getAttributes());
+        } else {
+            $attribs = '';
+        }
 
-    protected function render()
-    {
-        $html = '<table' . $this->getAttributes() . '>';
+        $html = '<table' . $attribs . '>' . self::EOL;
         $escape = $this->getView()->plugin('escapehtml');
-        $table = $this->table;
 
         if ($table->hasCaption()) {
-            $html .= '<caption>' . $escape($table->getCaption()) . '</caption>';
+            $html .= '<caption>' . $escape($table->getCaption()) . '</caption>' . self::EOL;
         }
 
         if ($table->hasHeaderRow()) {
-            $html .= '<thead><tr>';
+            $html .= '<thead>' . self::EOL . '<tr>' . self::EOL;
             foreach ($table->getHeaderRow() as $header) {
-                $html .= '<th>' . $escape($header) . '</th>';
+                $html .= '<th>' . $escape($header) . '</th>' . self::EOL;
             }
-            $html .= '</tr></thead>';
+            $html .= '</tr>' . self::EOL . '</thead>' . self::EOL;
         }
 
-        $html .= '<tbody>';
+        $html .= '<tbody>' . self::EOL;
         foreach ($table->getData() as $row) {
-            $html .= '<tr>';
-            foreach ($table->getHeaderRow() as $header) {
-                $col = isset($row[$header]) ? $escape($row[$header]) : '&nbsp;';
-                $html .= '<td>' . $col . '</td>';
+            $html .= '<tr>' . self::EOL;
+            foreach ($table->getHeaderRow() as $key => $header) {
+                $col = isset($row[$key]) ? $escape($row[$key]) : '&nbsp;';
+                $html .= '<td>' . $col . '</td>' . self::EOL;
             }
-            $html .= '</tr>';
+            $html .= '</tr>' . self::EOL;
         }
-        $html .= '</tbody></table>';
+        $html .= '</tbody>' . self::EOL . '</table>' . self::EOL;
 
         return $html;
-    }
-
-    protected function getAttributes()
-    {
-        $attributes = '';
-        $escape = $this->getView()->plugin('escapehtmlattr');
-
-        if ($this->table->hasAttributes()) {
-            foreach ($this->table->getAttributes() as $name => $value) {
-                $attributes .= ' ' . $name . '="' . $escape($value) . '"';
-            }
-        }
-
-        return $attributes;
     }
 }

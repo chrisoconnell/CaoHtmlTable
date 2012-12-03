@@ -50,9 +50,6 @@ class Table
 
     public function setHeaderRow(array $headerRow)
     {
-        if (!ArrayUtils::isList($headerRow)) {
-            throw new \InvalidArgumentException('Header Row must be a list of column names');
-        }
         $this->headerRow = $headerRow;
 
         return $this;
