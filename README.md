@@ -18,6 +18,7 @@ If the above `$data` was set in your controller, then inside your view script (.
     echo $this->htmlTable($data);
 
 Which will output the following:
+
     <table>
      <thead>
       <tr>
@@ -44,6 +45,7 @@ If this is your data:
     );
     
 Then the output of `echo $this->htmlTable($data);` will be:
+
     <table>
      <tbody>
       <tr>
