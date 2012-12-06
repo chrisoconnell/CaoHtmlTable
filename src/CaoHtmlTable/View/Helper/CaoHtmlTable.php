@@ -13,7 +13,7 @@ class CaoHtmlTable extends AbstractHtmlElement
      *
      * @param array|CaoHtmlTable\Model\Table $data
      * @return string The table HTML
-     * @throws \InvalidArgumentException if data is not an array or instance of CaoHtmlTable\Model\Table.
+     * @throws \InvalidArgumentException if rows is not an array or instance of CaoHtmlTable\Model\Table.
      */
     public function __invoke($data = array())
     {
@@ -45,7 +45,7 @@ class CaoHtmlTable extends AbstractHtmlElement
         }
 
         $html .= '<tbody>' . self::EOL;
-        foreach ($table->getData() as $row) {
+        foreach ($table->getRows() as $row) {
             $html .= '<tr>' . self::EOL;
             foreach ($table->getHeaderRow() as $key => $header) {
                 $col = isset($row[$key]) ? $escape($row[$key]) : '&nbsp;';
