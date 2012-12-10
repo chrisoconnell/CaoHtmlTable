@@ -6,6 +6,49 @@ Zend Framework 2 View Helper to render an HTML Table
 The input can be either an array or an instance of CaoHtmlTable\Model\Table.
 The code will try to make to most of what its given. 
 
+Installation
+------------
+
+### Main Setup
+
+#### By cloning project
+
+1. Install the [CaoHtmlTable](https://github.com/chrisoconnell/CaoHtmlTable) ZF2 module
+   by cloning it into `./vendor/`.
+2. Clone this project into your `./vendor/` directory.
+
+#### With composer
+
+1. Add this project in your composer.json:
+
+    ```json
+    "require": {
+        // ...
+        "chrisoconnell/cao-html-table": "dev-master"
+    }
+    ```
+
+2. Now tell composer to download CaoHtmlTable by running the command:
+
+    ```bash
+    $ php composer.phar update
+    ```
+
+#### Post installation
+
+1. Enabling it in your `application.config.php`file.
+
+    ```php
+    <?php
+    return array(
+        'modules' => array(
+            // ...
+            'CaoHtmlTable',
+        ),
+        // ...
+    );
+    ```
+
 Example - Table with header row
 ----------------------------------
     $data = array(
@@ -15,10 +58,13 @@ Example - Table with header row
 
 If the above `$data` was set in your controller, then inside your view script (.phtml file) put:
 
+    ```php
     echo $this->htmlTable($data);
+    ```
 
 Which will output the following:
 
+    ```html
     <table>
      <thead>
       <tr>
@@ -34,6 +80,7 @@ Which will output the following:
       </tr>
      </tbody>
     </table>
+    ```
     
 Example - Table without header row
 ----------------------------------
