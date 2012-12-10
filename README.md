@@ -58,7 +58,6 @@ Example - Table with header row
 If the above `$data` was set in your controller, then inside your view script (.phtml file) put:
 
     ```php
-    <?php
     echo $this->htmlTable($data);
     ```
 
