@@ -35,7 +35,7 @@ Installation
 
 #### Post installation
 
-1. Enabling it in your `application.config.php`file.
+1. Enabling it in your `application.config.php` file.
 
     ```php
     <?php
