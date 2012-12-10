@@ -23,7 +23,6 @@ Installation
 
     ```json
     "require": {
-        // ...
         "chrisoconnell/cao-html-table": "dev-master"
     }
     ```
@@ -59,6 +58,7 @@ Example - Table with header row
 If the above `$data` was set in your controller, then inside your view script (.phtml file) put:
 
     ```php
+    <?php
     echo $this->htmlTable($data);
     ```
 
