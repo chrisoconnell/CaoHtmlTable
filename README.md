@@ -48,20 +48,24 @@ Installation
     );
     ```
 
-Example - Table with header row
-----------------------------------
-    $data = array(
+Example &mdash; Table with header row
+-------------------------------------
+1. Define table rows as an associative array.
+
+    ```php
+    $rows = array(
       array('header col1' => 'col1 row1', 'header col2' => 'col2 row1'),
       array('header col1' => 'col1 row2', 'header col2' => 'col2 row2'),
     );
-
-If the above `$data` was set in your controller, then inside your view script (.phtml file) put:
-
-    ```php
-    echo $this->htmlTable($data);
     ```
 
-Which will output the following:
+2. Call view helper inside your view script (.phtml file).
+
+    ```php
+    echo $this->htmlTable($rows);
+    ```
+
+3. Which will output the following:
 
     ```html
     <table>
@@ -80,18 +84,28 @@ Which will output the following:
      </tbody>
     </table>
     ```
-    
-Example - Table without header row
-----------------------------------
-If this is your data:
+Notice that the keys of the array are mapped to the header row.
 
-    $data = array(
+Example &mdash; Table without header row
+----------------------------------------
+1. Define table rows as simple array.
+
+    ```php
+    $rows = array(
       array('col1 row1', 'col2 row1'),
       array('col1 row2', 'col2 row2'),
     );
-    
-Then the output of `echo $this->htmlTable($data);` will be:
+    ```
 
+2. Call view helper inside your view script (.phtml file).
+
+    ```php
+    echo $this->htmlTable($rows);
+    ```
+
+3. Which will output the following:
+
+    ```html
     <table>
      <tbody>
       <tr>
@@ -102,26 +116,40 @@ Then the output of `echo $this->htmlTable($data);` will be:
       </tr>
      </tbody>
     </table>
+    ```
+    
+Notice that no header row was output.
 
-Example - Using instance of CaoHtmlTable\Model\Table
-----------------------------------------------------
+Example &mdash; Using instance of CaoHtmlTable\Model\Table
+----------------------------------------------------------
 When you need more flexibility for the table &mdash; ie set caption, css class &mdash; then you need to create an instance of
-`CaoHtmlTable\Model\Table` to use as the data.
+`CaoHtmlTable\Model\Table` to use as the view helper input.
 
-If this is your data:
+1. Define the instance and set the data.
 
-    $data = array(
+    ```php
+    $rows = array(
         array('col1 row1', 'col2 row1'),
         array('col1 row2', 'col2 row2', 'col 3 row2'),
     );
-    $table = new CaoHtmlTable\Model\Table($data);
-    $table->setAttributes(array('class' => 'table'))
+    $table = new CaoHtmlTable\Model\Table($rows);
+    $table->setAttributes('class' => 'selected', 'id' => 'list')
           ->setCaption('My Table Caption')
           ->setHeaderRow(array('Header 1', 'Header 2', 'Header 3'));
+    ```
+When setting the header row, the index of the header will be matched to the index of the
+row. If a matching row index is not found, then the table cell will be set to `&nbsp;`.
 
-Then the output of `echo $this->htmlTable($table);` will be:
+2. Call view helper inside your view script (.phtml file).
 
-    <table class="table">
+    ```php
+    echo $this->htmlTable($table);
+    ```
+
+3. Which will output the following:
+
+    ```html
+    <table class="selected" id="list">
       <caption>My Table Caption</caption>
       <thead>
         <tr>
@@ -137,3 +165,4 @@ Then the output of `echo $this->htmlTable($table);` will be:
         </tr>
       </tbody>
     </table>
+    ```
