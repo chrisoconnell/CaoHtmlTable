@@ -50,7 +50,7 @@ Installation
 
 Example &mdash; Table with header row
 -------------------------------------
-1. Define table rows as an associative array.
+1. Define table rows as an array of associative arrays.
 
     ```php
     $rows = array(
@@ -58,6 +58,7 @@ Example &mdash; Table with header row
       array('header col1' => 'col1 row2', 'header col2' => 'col2 row2'),
     );
     ```
+    Header row will be set from the keys of the **first** array.
 
 2. Call view helper inside your view script (.phtml file).
 
@@ -88,7 +89,7 @@ Notice that the keys of the array are mapped to the header row.
 
 Example &mdash; Table without header row
 ----------------------------------------
-1. Define table rows as simple array.
+1. Define table rows as an array of arrays.
 
     ```php
     $rows = array(
