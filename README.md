@@ -134,7 +134,7 @@ When you need more flexibility for the table &mdash; ie set caption, css class &
         array('col1 row2', 'col2 row2', 'col 3 row2'),
     );
     $table = new CaoHtmlTable\Model\Table($rows);
-    $table->setAttributes('class' => 'selected', 'id' => 'list')
+    $table->setAttributes(array('class' => 'selected', 'id' => 'list'))
           ->setCaption('My Table Caption')
           ->setHeaderRow(array('Header 1', 'Header 2', 'Header 3'));
     ```
