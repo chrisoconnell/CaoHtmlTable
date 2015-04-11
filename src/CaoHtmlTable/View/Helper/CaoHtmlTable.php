@@ -8,6 +8,7 @@ use Zend\Stdlib\ArrayUtils;
 
 class CaoHtmlTable extends AbstractHtmlElement
 {
+
     /**
      * Generates a 'Table' element.
      *
@@ -30,7 +31,7 @@ class CaoHtmlTable extends AbstractHtmlElement
         }
 
         $html = '<table' . $attribs . '>' . self::EOL;
-        $escape = $this->getView()->plugin('escapehtml');
+        $escape = null != $table->getEscape() ? $this->getView()->plugin($table->getEscape()) : function ($str) { return $str; };
 
         if ($table->hasCaption()) {
             $html .= '<caption>' . $escape($table->getCaption()) . '</caption>' . self::EOL;

@@ -27,11 +27,17 @@ class Table
     protected $attributes;
 
     /**
+     * @var string
+     */
+    protected $escapePlugin;
+
+    /**
      * @param array $rows - Array of rows for the table
      */
     public function __construct(array $rows = array())
     {
         $this->rows = $rows;
+        $this->escapePlugin = 'escapehtml';
     }
 
     /**
@@ -149,5 +155,24 @@ class Table
     public function hasAttributes()
     {
         return isset($this->attributes);
+    }
+
+    /**
+     * @param string $escapePlugin
+     * @return Table
+     */
+    public function setEscape($escapePlugin)
+    {
+        $this->escapePlugin = $escapePlugin;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEscape()
+    {
+        return $this->escapePlugin;
     }
 }
